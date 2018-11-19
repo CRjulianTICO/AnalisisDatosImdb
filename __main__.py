@@ -259,11 +259,11 @@ try:
     col_equipos = db["equipos"]
     col_episodios = db["episodios"]
     col_calificaciones = db["calificaciones"]
-    # inserta_ratings_titulos(col_titulos)
-    # actualiza_titulos(col_titulos)
-    # inserta_ratings(col_calificaciones)
-    # inserta_names(col_nombres)
-    # inserta_episodes(col_episodios)
+    inserta_ratings_titulos(col_titulos)
+    actualiza_titulos(col_titulos)
+    inserta_ratings(col_calificaciones)
+    inserta_names(col_nombres)
+    inserta_episodes(col_episodios)
     inserta_crews(col_equipos)
 
 
