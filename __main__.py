@@ -255,10 +255,10 @@ try:
     print("Conexion Exitosa!!!")
     db = conn["Proyecto"]
     col_titulos = db["titulos"]
-    col_nombres = db["nombres"]
-    col_equipos = db["equipo"]
+    col_nombres = db["personas"]
+    col_equipos = db["equipos"]
     col_episodios = db["episodios"]
-    col_calificaciones = db["calificacion"]
+    col_calificaciones = db["calificaciones"]
     inserta_ratings_titulos(col_titulos)
     actualiza_titulos(col_titulos)
     inserta_ratings(col_calificaciones)
