@@ -124,7 +124,7 @@ def insertar_desde_linea_especifica(col):
 
 
 #Metodo para actualizar los rankings para ponerle la informacion mas relevante de los titulos
-def inserta_ratings_titulos(colec):
+def inserta_ratings_titulos(col):
     json ={}
     i = 1
     with open('C:/Users/julia/Desktop/IMDB DataSets/ratingsData.tsv', encoding="utf8") as tsvfile:
@@ -134,7 +134,7 @@ def inserta_ratings_titulos(colec):
                 json["_id"]=fila[0]
                 json["calificacion"]=float(fila[1])
                 json["votos"]=int(float(fila[2]))
-                x = colec.insert_one(json)
+                x = col.insert_one(json)
                 print("INSERTO: "+x.inserted_id)
             else:
                 i = i + 1
@@ -151,7 +151,7 @@ def inserta_ratings(col):
                 json["_id"]=fila[0]
                 json["calificacion"]=float(fila[1])
                 json["votos"]=int(float(fila[2]))
-                x = colec.insert_one(json)
+                x = col.insert_one(json)
                 print("INSERTO: "+x.inserted_id)
             else:
                 i = i + 1
@@ -176,7 +176,7 @@ def inserta_crews(col):
                 else:
                     json["escritores"] = fila[2]
                 res = col.insert_one(json)
-            print("INSERTO: "+res.inserted_id+"/"+fila[0])
+            print("INSERTO: "+str(fila[0]))
             i = i + 1
         else:
             i = i + 1
@@ -185,7 +185,7 @@ def inserta_crews(col):
 def inserta_episodes(col):
     json ={}
     i = 1
-    with open('C:/Users/julia/Desktop/IMDB DataSets/espisodeData.tsv', encoding="utf8") as tsvfile:
+    with open('C:/Users/julia/Desktop/IMDB DataSets/episodeData.tsv', encoding="utf8") as tsvfile:
         archivo = csv.reader(tsvfile, delimiter='\t')
         for fila in archivo:
             if i!=1:
@@ -200,7 +200,7 @@ def inserta_episodes(col):
                 else:
                     json["numeroEpisodio"] = int(float(fila[3]))
                 res = col.insert_one(json)
-            print("INSERTO: "+res.inserted_id+"/"+fila[0])
+            print("INSERTO: "+str(fila[0]))
             i = i + 1
         else:
             i = i + 1
@@ -240,8 +240,8 @@ def inserta_names(col):
                             json["titulos"] = "Desconocido"
                         else:
                             json["titulos"] = fila[5]
-                res = col.insert_one(json)
-            print("INSERTO: "+res.inserted_id+"/"+fila[0])
+            res = col.insert_one(json)
+            print("INSERTO: "+str(res.inserted_id))
             i = i + 1
         else:
             i = i + 1
@@ -259,14 +259,14 @@ try:
     col_equipos = db["equipos"]
     col_episodios = db["episodios"]
     col_calificaciones = db["calificaciones"]
-    inserta_ratings_titulos(col_titulos)
-    actualiza_titulos(col_titulos)
-    inserta_ratings(col_calificaciones)
-    inserta_names(col_nombres)
-    inserta_episodes(col_episodios)
+    # inserta_ratings_titulos(col_titulos)
+    # actualiza_titulos(col_titulos)
+    # inserta_ratings(col_calificaciones)
+    # inserta_names(col_nombres)
+    # inserta_episodes(col_episodios)
     inserta_crews(col_equipos)
 
 
 except Exception as ex:
-    print("Could not connect to MongoDB")
+    print("No se pudo conectar con Mongo")
     print(ex)
